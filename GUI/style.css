@@ -1,0 +1,21 @@
+ul {
+	list-style: none;
+	font: "Roboto","Helvetica","Arial";
+	font-size: 14px;
+	font-weight: 500;
+	color: #000000;
+}
+
+li:hover {
+	background-color: #CAC5C3;
+}
+li {
+	margin-right: 40px;
+}
+a {
+	font: "Roboto","Helvetica","Arial";
+	font-size: 14px;
+	font-weight: 500;
+	color: #000000;
+	
+}

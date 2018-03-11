@@ -1,0 +1,201 @@
+{
+
+  "PipeController": {
+    "executeTrain": 0,
+    "executeBuildTraindata": 0,
+    "executeClassification": 1
+  },
+  "Input": {
+    "pathToCreateTrainDataFolder": "../../test_data/pdf/clear/basic/",
+    "pathToCreateTrainDataLabelFolder": "../../test_data/lable/clear/basic/",
+    "pathToTrainDataFolder": "./traindata/",
+    "pathToClassifiactionImage": "./Input_Component\\Input\\clear_basic_15.pdf"
+  },
+  "DetectionCore": {
+    "SheetMusicClassifier": {
+      "HorizontalLineRemoveDetector": {
+        "indexOfProcessMat": 1,
+        "anchorPointX": -1,
+        "anchorPointY": -1,
+        "kernelWidth": 1,
+        "kernelHeight": 5,
+        "morphOfKernel": "MORPH_RECT",
+        "showImagesInWindow": false
+      },
+      "NoteLineDetector": {
+        "indexOfProcessMat": 0,
+        "maxGradeOfLinesInPx": 2,
+        "minDistanceToNextNoteRow": 20,
+        "marginTop": 0.5,
+        "marginBottom": 0.5,
+        "cannyThreshold1": 50,
+        "cannyThreshold2": 150,
+        "cannyApertureSize": 3,
+        "houghLinesRho": 1,
+        "houghLinesThetaInDegree": 1,
+        "houghLinesThreshold": 400,
+        "showImagesInWindow": false
+      },
+      "TactDetector": {
+        "indexOfProcessMat": 1,
+        "tactLineWidthMax": 10,
+        "tactLineHeightMin": 40,
+        "minWidthOfTactLine": 1,
+        "findCountersMode": "RETR_CCOMP",
+        "findCountersMethode": "CHAIN_APPROX_NONE",
+        "showImagesInWindow": false
+      },
+      "NoteDetector": {
+        "indexOfProcessMat": 1,
+        "minNoteWidth_WithStem": 8,
+        "maxNoteWidth_WithStem": 25,
+        "minNoteHeight_WithStem": 30,
+        "maxNoteHeight_WithStem": 94,
+        "minNoteWidth_WithoutStem": 14,
+        "maxNoteWidth_WithoutStem": 30,
+        "minNoteHeight_WithoutStem": 8,
+        "maxNoteHeight_WithoutStem": 23,
+        "noteImageWidth": 28,
+        "findCountersMode": "RETR_CCOMP",
+        "findCountersMethode": "CHAIN_APPROX_NONE",
+        "showImagesInWindow": false
+      },
+      "NoteHeightBlobClassifier": {
+        "indexOfProcessMatWithoutLines": 1,
+        "indexOfProcessMatWithLines": 0,
+        "maxGradeOfLinesInPx": 2,
+        "marginTop": 0.5,
+        "marginBottom": 0.5,
+        "cannyThreshold1": 50,
+        "cannyThreshold2": 150,
+        "cannyApertureSize": 3,
+        "houghLinesRho": 1,
+        "houghLinesThetaInDegree": 1,
+        "houghLinesThreshold": 5,
+        "showImagesInWindow": false
+      },
+      "ImageFiller": {
+        "fillRows": true,
+        "fillColumns": true,
+        "targetNumberOfRows": 112,
+        "targetNumberOfColumns": 32,
+        "appendRowsTop": false,
+        "appendColumnsRight": true,
+        "showImagesInWindow": false
+      },
+      "ObjectCentering": {
+        "indexOfProcessMat": 1,
+        "targetNumberOfRows": 96,
+        "targetNumberOfColumns": 38,
+        "useDeletingVerticalSpaces": true,
+        "useDeletingHorizontalSpaces": true,
+        "findCountersMode": "RETR_LIST",
+        "findCountersMethode": "CHAIN_APPROX_NONE",
+        "colorOfBorder": 0,
+        "showImagesInWindow": false
+      },
+      "ImageResizer": {
+        "targetNumberOfRows": 96,
+        "targetNumberOfColumns": 28,
+        "interpolation": "INTER_LINEAR",
+        "showImagesInWindow": false
+      },
+      "CnnNoteClassifier": {
+        "modelDir": "/cnn_models",
+        "gdLearnRateForTypeModel":0.001,
+        "gdLearnRateForHightModel":0.001,
+        "trainSteps":5000,
+        "evalInterval":500,
+        "evalDataSize":300,
+        "testDataSize": 300,
+        "trainTypeModel": 1,
+        "trainHightModel": 1
+      },
+      "ClefTemplateClassifier": {
+        "templateFolder": "DetectionCore_Component/Classifier/TemplateMatcher/Templates/",
+        "templateMethod": 5,
+        "removeIfFound": true
+      },
+      "TimeTemplateClassifier": {
+        "templateFolder": "DetectionCore_Component/Classifier/TemplateMatcher/Templates/",
+        "templateMethod": 5,
+        "removeIfFound": true
+      },
+      "KeyTemplateClassifier": {
+        "templateFolder": "DetectionCore_Component/Classifier/TemplateMatcher/Templates/",
+        "templateMethod": 5,
+        "removeIfFound": true
+      }
+    }
+  },
+  "ConfigInput": {
+    "var1": "1",
+    "var2": "2",
+    "var3": "3",
+    "var4": "4"
+  },
+  "Output": {
+    "outputpathmusicxml": "./output_musicxml.xml",
+    "outputpathmidi": "./output_midi.mid",
+    "playmidi": true,
+    "fillwithrests": true,
+    "miditempo": 320
+  },
+  "Postprocessing": {
+    "var1": "1",
+    "var2": "2",
+    "var3": "3",
+    "var4": "4"
+  },
+  "Preprocessing": {
+    "GaussianBlurNoiseFilterPreprocessor": {
+        "ksizeWidth": 5,
+        "ksizeHeight": 5,
+        "sigmaX": 30,
+        "showImagesInWindow": false
+    },
+    "AdaptiveThresholdBinarizationPreprocessor_FirstPreprocessor": {
+        "maxValue": 255,
+        "adaptiveMethode": "ADAPTIVE_THRESH_GAUSSIAN_C",
+        "thresholdType": "THRESH_BINARY",
+        "blockSize": 51,
+        "C": 2,
+        "showImagesInWindow": false
+    },
+    "BitwiseNotPreprocessor": {
+        "showImagesInWindow": false
+    },
+    "AdaptiveThresholdBinarizationPreprocessor_SecondPreprocessor": {
+        "maxValue": 255,
+        "adaptiveMethode": "ADAPTIVE_THRESH_MEAN_C",
+        "thresholdType": "THRESH_BINARY",
+        "blockSize": 15,
+        "C": -2,
+        "showImagesInWindow": false
+    },
+    "NoteSheetScaleConstCalculator": {
+      "maxGradeOfLinesInPx": 2,
+      "marginTop": 0.5,
+      "marginBottom": 0.5,
+      "cannyThreshold1": 50,
+      "cannyThreshold2": 150,
+      "cannyApertureSize": 3,
+      "houghLinesRho": 1,
+      "houghLinesThetaInDegree": 1,
+      "houghLinesThreshold": 400,
+      "minDistanceToNextNoteRow": 30,
+      "minHeightOfNoteRow": 20,
+      "showImagesInWindow": false
+    },
+    "ScaleNoteSheetPreprocessor": {
+      "targetLineHeight": 99,
+      "interpolation": "INTER_LINEAR"
+    }
+  },
+  "State": {
+    "var1": "1",
+    "var2": "2",
+    "var3": "3",
+    "var4": "4"
+  }
+}
