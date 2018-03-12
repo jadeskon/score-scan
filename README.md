@@ -10,7 +10,9 @@ It was a master project of seven students of Hochschule Kempten - University of 
 To-Do
 
 ## Usage
-To run this application you have to run the main.py file. If you would like to digitize a other score than you have to set in config.json the attribute "pathToClassifiactionImage" to a other file:
+`A update how you can train cnn model will come later! So you get a error at the moment because you have no trained model!`
+
+To run this application you have to run the `main.py` file. If you would like to digitize a other score than you have to set in `config.json` the attribute `pathToClassifiactionImage` to a other file:
 
   "Input": {
     ...,
